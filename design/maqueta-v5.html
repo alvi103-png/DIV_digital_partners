@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DIV · Digital Partners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&display=swap">
+<style>
+:root{--berenjena:#67204D;--hondo:#3D102C;--terracota:#F05A35;--mango:#FFB000;--blanco:#fff;--lila:#F4EAF1;--lila-2:#E9D6E3;--sol:#FFE9AE;--carbon:#221C24;--texto-2:#4F4854;
+--t-chico:15px;--t-texto:16px;--t-bloque:22px;--t-seccion:40px;--t-portada:clamp(44px,6.4vw,80px)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--blanco);color:var(--carbon);font:400 var(--t-texto)/1.6 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3{margin:0;font-weight:500;text-wrap:balance}
+h1{font-size:var(--t-portada);line-height:1.02;letter-spacing:-.04em}
+h2{font-size:var(--t-seccion);line-height:1.1;letter-spacing:-.025em}
+h3{font-size:var(--t-bloque);line-height:1.2;letter-spacing:-.01em}
+p{margin:0;text-wrap:pretty}a{color:inherit}
+:focus-visible{outline:3px solid var(--terracota);outline-offset:3px}
+.w{max-width:1160px;margin:auto;padding-inline:20px}
+.ico{width:32px;height:32px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;color:var(--berenjena);flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border-radius:999px;border:1px solid var(--hondo);background:transparent;color:var(--hondo);font:500 var(--t-chico)/1 "Instrument Sans",system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:background-color .18s ease,color .18s ease}
+.btn:hover{background:var(--hondo);color:var(--blanco)}
+.btn.lleno{background:var(--hondo);color:var(--blanco)}.btn.lleno:hover{background:var(--berenjena);border-color:var(--berenjena)}
+
+/* Barra flotante con menú en píldora */
+.barra{position:fixed;inset:12px 0 auto;z-index:20}
+.barra .w{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.marca{display:flex;align-items:baseline;gap:8px;text-decoration:none;padding:8px 18px;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(10px)}
+.marca b{font-weight:500;font-size:26px;letter-spacing:-.03em}.marca span{font-size:var(--t-chico)}
+nav{display:flex;gap:4px;padding:6px;border-radius:999px;background:var(--hondo);color:var(--blanco);font-size:var(--t-chico)}
+nav a{text-decoration:none;padding:6px 16px;border-radius:999px;transition:background-color .18s ease}nav a:hover{background:var(--berenjena)}
+
+/* Portada: halo de color, titular y formulario flotante */
+.hero{background:radial-gradient(ellipse 62% 56% at 50% 44%,#FFD66B 0%,#FFE7A8 35%,rgba(255,236,200,.5) 62%,rgba(255,255,255,0) 100%);padding:152px 0 96px}
+.arriba{display:grid;grid-template-columns:2.2fr 1fr;gap:56px;align-items:start}
+.lado{display:grid;gap:32px;justify-items:start;padding-top:12px}
+.puntos{width:100px;fill:var(--berenjena);animation:baja 2.4s ease-in-out 3}
+@keyframes baja{50%{transform:translateY(10px)}}
+.ficha{max-width:500px;margin:72px auto 0;padding:28px;border-radius:16px;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);box-shadow:0 20px 60px rgba(103,32,77,.14);backdrop-filter:blur(14px)}
+.ficha h2{font-size:var(--t-bloque);letter-spacing:-.01em;margin-bottom:6px}
+.ficha>p{font-size:var(--t-chico);color:var(--texto-2);margin-bottom:20px}
+form{display:grid;gap:16px}label{display:grid;gap:6px;font-size:var(--t-chico)}
+input:not([type=checkbox]),textarea{width:100%;padding:11px 18px;border-radius:22px;border:1px solid #8F7A88;background:rgba(255,255,255,.75);color:var(--carbon);font:400 var(--t-texto)/1.4 "Instrument Sans",system-ui,sans-serif}
+textarea{border-radius:16px;resize:vertical}
+.acepto{grid-template-columns:auto 1fr;gap:12px;align-items:start}.acepto input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--berenjena)}
+form .btn{justify-self:start}output{font-size:var(--t-chico);min-height:1.6em}
+
+.sec{padding-block:104px}
+.cab{display:grid;gap:16px;justify-items:center;text-align:center;max-width:620px;margin:0 auto 56px}
+/* Servicios: tarjetas con ilustración */
+.rejilla{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.tarjeta{display:grid;grid-template-rows:auto auto 1fr auto;gap:14px;padding:32px;border-radius:20px;background:var(--lila);box-shadow:0 6px 24px rgba(61,16,44,.08);font-size:var(--t-chico);transition:transform .25s ease,box-shadow .25s ease}
+.arte{border-radius:14px;overflow:hidden;margin-top:10px;aspect-ratio:480/220}
+.arte svg{display:block;width:100%;height:100%;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.tarjeta .ico{transition:transform .25s ease}
+
+/* Proceso: filas separadas por líneas */
+.proceso{background:var(--lila-2)}
+.pasos{list-style:none;margin:48px 0 0;padding:0;counter-reset:p}
+.pasos li{counter-increment:p;display:grid;grid-template-columns:72px 32px 1fr;gap:24px;align-items:start;padding-block:32px;border-bottom:1px solid var(--berenjena);transition:padding .25s ease,background-color .25s ease}
+.pasos li::before{content:counter(p);font-size:var(--t-seccion);line-height:1;color:var(--berenjena)}
+.pasos p{font-size:var(--t-chico);margin-top:8px}
+
+/* Nosotras */
+.nosotras{background:var(--sol);text-align:center}.nosotras .cab{margin-bottom:0}
+.duo{display:flex;justify-content:center}.duo span{width:88px;height:88px;border-radius:50%;display:grid;place-items:center;font-size:var(--t-bloque);font-weight:500;background:var(--berenjena);color:#fff;border:4px solid var(--sol);transition:transform .25s ease}
+.duo span+span{margin-left:-16px;background:var(--terracota);color:var(--carbon)}
+.cierre{text-align:center}.cierre .cab{margin-bottom:0}
+
+footer{background:var(--hondo);color:#fff;padding-block:32px;font-size:var(--t-chico)}footer .w{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+@media(hover:hover){
+.tarjeta:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(61,16,44,.18)}
+.tarjeta:hover .arte svg{transform:scale(1.09)}.tarjeta:hover .ico{transform:rotate(-8deg) scale(1.15)}
+.pasos li:hover{padding-inline:20px;background:rgba(255,255,255,.55)}
+.duo:hover span:first-child{transform:translateX(-10px) rotate(-8deg)}.duo:hover span+span{transform:translateX(10px) rotate(8deg)}}
+@media(max-width:860px){.arriba,.rejilla{grid-template-columns:1fr;gap:24px}.puntos{display:none}}
+@media(max-width:640px){:root{--t-seccion:32px;--t-bloque:20px}.marca span,nav .secundario{display:none}.hero{padding:112px 0 64px}.ficha{margin-top:48px;padding:20px}.sec{padding-block:72px}.tarjeta{padding:24px}.pasos li{grid-template-columns:40px 1fr;gap:16px}.pasos .ico{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<!-- Iconos Lucide (licencia ISC), incluidos en la página -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-workflow" viewBox="0 0 24 24"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></symbol>
+  <symbol id="i-calendar-check" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></symbol>
+  <symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></symbol>
+  <symbol id="i-ear" viewBox="0 0 24 24"><path d="M6 8.5a6.5 6.5 0 1 1 13 0c0 6-6 6-6 10a3.5 3.5 0 1 1-7 0"/><path d="M15 8.5a2.5 2.5 0 0 0-5 0v1a2 2 0 1 1 0 4"/></symbol>
+  <symbol id="i-file-text" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M10 9H8M16 13H8M16 17H8"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+  <symbol id="i-trending-up" viewBox="0 0 24 24"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+</svg>
+
+<header class="barra"><div class="w">
+  <a class="marca" href="#inicio"><b>DIV</b><span>Digital Partners</span></a>
+  <nav><a href="#servicios">Servicios</a><a class="secundario" href="#proceso">Proceso</a><a class="secundario" href="#nosotras">Nosotras</a><a href="#contacto">Contacto</a></nav>
+</div></header>
+<main id="inicio">
+  <section class="hero"><div class="w">
+    <div class="arriba">
+      <h1>Ideas diferentes. Soluciones reales.</h1>
+      <div class="lado"><p>Páginas web, automatizaciones e inteligencia artificial para negocios que quieren crecer sin complicarse.</p><svg class="puntos" viewBox="0 0 100 52" aria-hidden="true"><circle cx="6" cy="6" r="3.4"/><circle cx="17" cy="16" r="3.4"/><circle cx="28" cy="26" r="3.4"/><circle cx="39" cy="36" r="3.4"/><circle cx="50" cy="46" r="3.4"/><circle cx="61" cy="36" r="3.4"/><circle cx="72" cy="26" r="3.4"/><circle cx="83" cy="16" r="3.4"/><circle cx="94" cy="6" r="3.4"/></svg></div>
+    </div>
+    <div class="ficha" id="contacto">
+      <h2>¿Hablamos de tu proyecto?</h2>
+      <p>Te escribimos en menos de 24 horas hábiles.</p>
+      <form id="form-contacto">
+        <label>Nombre<input name="nombre" required pattern=".*\S.*" autocomplete="name"></label>
+        <label>Email<input name="email" type="email" required autocomplete="email"></label>
+        <label>Mensaje breve<textarea name="mensaje" rows="3" required></textarea></label>
+        <label class="acepto"><input type="checkbox" required><span>Acepto el aviso de privacidad (pendiente de redactar)</span></label>
+        <button class="btn lleno" type="submit">Quiero que me contacten</button>
+        <output></output>
+      </form>
+    </div>
+  </div></section>
+  <section class="sec" id="servicios"><div class="w">
+    <div class="cab"><h2>Todo lo digital de tu negocio, en un solo lugar</h2><p>Elige un servicio o combínalos. Todos están pensados para funcionar juntos.</p></div>
+    <div class="rejilla"><article class="tarjeta"><svg class="ico" aria-hidden="true"><use href="#i-monitor"/></svg><h3>Páginas web</h3><p>Páginas de presentación, tiendas en línea y webs de empresa, rápidas y fáciles de actualizar.</p><div class="arte" aria-hidden="true"><svg viewBox="0 0 480 220" preserveAspectRatio="xMidYMid slice"><rect width="480" height="220" fill="#F6E7F0"/><g transform="translate(70 34)"><rect width="220" height="150" rx="12" fill="#67204D"/><circle cx="18" cy="17" r="4" fill="#fff"/><circle cx="32" cy="17" r="4" fill="#fff" opacity=".7"/><rect x="16" y="40" width="120" height="12" rx="6" fill="#fff" opacity=".85"/><rect x="16" y="62" width="170" height="8" rx="4" fill="#fff" opacity=".5"/></g><g transform="translate(132 60)"><rect width="220" height="150" rx="12" fill="#E83E83"/><circle cx="18" cy="17" r="4" fill="#fff"/><circle cx="32" cy="17" r="4" fill="#fff" opacity=".7"/><rect x="16" y="40" width="120" height="12" rx="6" fill="#fff" opacity=".85"/><rect x="16" y="62" width="170" height="8" rx="4" fill="#fff" opacity=".5"/></g><g transform="translate(194 86)"><rect width="220" height="150" rx="12" fill="#F05A35"/><circle cx="18" cy="17" r="4" fill="#fff"/><circle cx="32" cy="17" r="4" fill="#fff" opacity=".7"/><rect x="16" y="40" width="120" height="12" rx="6" fill="#fff" opacity=".85"/><rect x="16" y="62" width="170" height="8" rx="4" fill="#fff" opacity=".5"/></g></svg></div></article><article class="tarjeta"><svg class="ico" aria-hidden="true"><use href="#i-workflow"/></svg><h3>Automatizaciones</h3><p>Menos tareas repetidas: llega un formulario, se guarda en tu lista de clientes y sale la respuesta por WhatsApp.</p><div class="arte" aria-hidden="true"><svg viewBox="0 0 480 220" preserveAspectRatio="xMidYMid slice"><rect width="480" height="220" fill="#FFF1CC"/><path d="M-10 30 C 140 30, 170 110, 240 110 S 350 200, 490 200" fill="none" stroke="#67204D" stroke-width="7" stroke-linecap="round" opacity=".85"/><path d="M-10 48 C 140 48, 170 110, 240 110 S 350 182, 490 182" fill="none" stroke="#F05A35" stroke-width="7" stroke-linecap="round" opacity=".85"/><path d="M-10 66 C 140 66, 170 110, 240 110 S 350 164, 490 164" fill="none" stroke="#E83E83" stroke-width="7" stroke-linecap="round" opacity=".85"/><path d="M-10 84 C 140 84, 170 110, 240 110 S 350 146, 490 146" fill="none" stroke="#FFB000" stroke-width="7" stroke-linecap="round" opacity=".85"/><path d="M-10 102 C 140 102, 170 110, 240 110 S 350 128, 490 128" fill="none" stroke="#67204D" stroke-width="7" stroke-linecap="round" opacity=".85"/><path d="M-10 120 C 140 120, 170 110, 240 110 S 350 110, 490 110" fill="none" stroke="#F05A35" stroke-width="7" stroke-linecap="round" opacity=".85"/><path d="M-10 138 C 140 138, 170 110, 240 110 S 350 92, 490 92" fill="none" stroke="#E83E83" stroke-width="7" stroke-linecap="round" opacity=".85"/><path d="M-10 156 C 140 156, 170 110, 240 110 S 350 74, 490 74" fill="none" stroke="#FFB000" stroke-width="7" stroke-linecap="round" opacity=".85"/><path d="M-10 174 C 140 174, 170 110, 240 110 S 350 56, 490 56" fill="none" stroke="#67204D" stroke-width="7" stroke-linecap="round" opacity=".85"/><path d="M-10 192 C 140 192, 170 110, 240 110 S 350 38, 490 38" fill="none" stroke="#F05A35" stroke-width="7" stroke-linecap="round" opacity=".85"/><circle cx="240" cy="110" r="30" fill="#3D102C"/><circle cx="240" cy="110" r="10" fill="#FFB000"/></svg></div></article><article class="tarjeta"><svg class="ico" aria-hidden="true"><use href="#i-calendar-check"/></svg><h3>Soluciones para el día a día</h3><p>Soluciones digitales a medida para simplificar la gestión de tu negocio.</p><div class="arte" aria-hidden="true"><svg viewBox="0 0 480 220" preserveAspectRatio="xMidYMid slice"><rect width="480" height="220" fill="#FDE6DF"/><rect x="46" y="144" width="48" height="96" rx="24" fill="#FFB000" opacity=".88"/><rect x="104" y="90" width="48" height="150" rx="24" fill="#F05A35" opacity=".88"/><rect x="162" y="122" width="48" height="118" rx="24" fill="#E83E83" opacity=".88"/><rect x="220" y="44" width="48" height="196" rx="24" fill="#67204D" opacity=".88"/><rect x="278" y="108" width="48" height="132" rx="24" fill="#F05A35" opacity=".88"/><rect x="336" y="68" width="48" height="172" rx="24" fill="#FFB000" opacity=".88"/><rect x="394" y="130" width="48" height="110" rx="24" fill="#3D102C" opacity=".88"/></svg></div></article><article class="tarjeta"><svg class="ico" aria-hidden="true"><use href="#i-bot"/></svg><h3>Inteligencia artificial</h3><p>Un asistente que atiende por ti, responde dudas y propone horarios a tus clientes.</p><div class="arte" aria-hidden="true"><svg viewBox="0 0 480 220" preserveAspectRatio="xMidYMid slice"><rect width="480" height="220" fill="#3D102C"/><ellipse cx="40" cy="110.0" rx="16" ry="31" transform="rotate(-34 40 110.0)" fill="#FFB000" opacity=".82"/><ellipse cx="64" cy="128.0" rx="18" ry="34" transform="rotate(-30 64 128.0)" fill="#F05A35" opacity=".82"/><ellipse cx="88" cy="143.4" rx="20" ry="37" transform="rotate(-26 88 143.4)" fill="#E83E83" opacity=".82"/><ellipse cx="112" cy="153.9" rx="16" ry="40" transform="rotate(-22 112 153.9)" fill="#FFB000" opacity=".82"/><ellipse cx="136" cy="158.0" rx="18" ry="43" transform="rotate(-18 136 158.0)" fill="#F05A35" opacity=".82"/><ellipse cx="160" cy="155.1" rx="20" ry="46" transform="rotate(-14 160 155.1)" fill="#E83E83" opacity=".82"/><ellipse cx="184" cy="145.5" rx="16" ry="49" transform="rotate(-10 184 145.5)" fill="#FFB000" opacity=".82"/><ellipse cx="208" cy="130.8" rx="18" ry="52" transform="rotate(-6 208 130.8)" fill="#F05A35" opacity=".82"/><ellipse cx="232" cy="113.1" rx="20" ry="55" transform="rotate(-2 232 113.1)" fill="#E83E83" opacity=".82"/><ellipse cx="256" cy="94.9" rx="16" ry="58" transform="rotate(2 256 94.9)" fill="#FFB000" opacity=".82"/><ellipse cx="280" cy="78.9" rx="18" ry="55" transform="rotate(6 280 78.9)" fill="#F05A35" opacity=".82"/><ellipse cx="304" cy="67.5" rx="20" ry="52" transform="rotate(10 304 67.5)" fill="#E83E83" opacity=".82"/><ellipse cx="328" cy="62.2" rx="16" ry="49" transform="rotate(14 328 62.2)" fill="#FFB000" opacity=".82"/><ellipse cx="352" cy="64.0" rx="18" ry="46" transform="rotate(18 352 64.0)" fill="#F05A35" opacity=".82"/><ellipse cx="376" cy="72.4" rx="20" ry="43" transform="rotate(22 376 72.4)" fill="#E83E83" opacity=".82"/><ellipse cx="400" cy="86.4" rx="16" ry="40" transform="rotate(26 400 86.4)" fill="#FFB000" opacity=".82"/><ellipse cx="424" cy="103.8" rx="18" ry="37" transform="rotate(30 424 103.8)" fill="#F05A35" opacity=".82"/><ellipse cx="448" cy="122.1" rx="20" ry="34" transform="rotate(34 448 122.1)" fill="#E83E83" opacity=".82"/></svg></div></article></div>
+  </div></section>
+  <section class="sec proceso" id="proceso"><div class="w">
+    <h2>Cuatro pasos, sin sorpresas</h2>
+    <ol class="pasos"><li><svg class="ico" aria-hidden="true"><use href="#i-ear"/></svg><div><h3>Escuchamos</h3><p>Una llamada para entender tu negocio y tus metas.</p></div></li><li><svg class="ico" aria-hidden="true"><use href="#i-file-text"/></svg><div><h3>Proponemos</h3><p>Solución, tiempos y precio claros desde el inicio.</p></div></li><li><svg class="ico" aria-hidden="true"><use href="#i-wrench"/></svg><div><h3>Construimos</h3><p>Avances semanales que puedes ver y comentar.</p></div></li><li><svg class="ico" aria-hidden="true"><use href="#i-trending-up"/></svg><div><h3>Crecemos</h3><p>Medimos, ajustamos y seguimos a tu lado.</p></div></li></ol>
+  </div></section>
+  <section class="sec nosotras" id="nosotras"><div class="w"><div class="cab">
+    <div class="duo" aria-hidden="true"><span>V</span><span>D</span></div>
+    <h2>Viviana y Damaris</h2><p>Dos socias que unen diseño, tecnología y estrategia. Hablamos claro y construimos soluciones que de verdad usas.</p>
+  </div></div></section>
+  <section class="sec cierre"><div class="w"><div class="cab"><h2>Empieza por contarnos qué necesitas</h2><a class="btn" href="#contacto">Cuéntanos tu proyecto</a></div></div></section>
+</main>
+<footer><div class="w"><span>© 2026 DIV · Digital Partners</span><span>Aviso de privacidad (pendiente)</span></div></footer>
+<script>
+  // Formulario de demostración: no se envía nada
+  document.getElementById('form-contacto').addEventListener('submit', (e) => {
+    e.preventDefault();
+    e.target.querySelector('output').textContent = 'Maqueta: el envío todavía no está conectado.';
+  });
+</script>
+</body>
+</html>

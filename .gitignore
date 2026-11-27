@@ -1,0 +1,27 @@
+# Dependencias
+node_modules/
+
+# Web generada
+dist/
+dist-ssr/
+*.tsbuildinfo
+
+# Claves y configuración local
+.env
+.env.*
+!.env.example
+.dev.vars*
+.wrangler/
+*.local
+.claude/settings.local.json
+
+# Registros
+logs/
+*.log
+
+# Sistema y editor
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
