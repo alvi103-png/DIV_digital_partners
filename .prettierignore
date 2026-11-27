@@ -1,0 +1,9 @@
+dist
+dist-ssr
+package-lock.json
+skills-lock.json
+.agents
+.claude
+design
+specs
+*.md

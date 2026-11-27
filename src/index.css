@@ -1,0 +1,6 @@
+/* Estilos base provisionales. Los definitivos llegan con la tarea T09. */
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: system-ui, sans-serif;
+}
