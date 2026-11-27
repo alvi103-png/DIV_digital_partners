@@ -27,7 +27,7 @@ El dominio y el correo condicionan el envío del formulario: conviene empezar po
 | Hecho | N.º | Tarea | Responsable | Depende de | Se comprueba |
 |---|---|---|---|---|---|
 | [ ] | T07 | Guardar el avance en git y crear el repositorio en GitHub | Sin asignar | Nada | Ambas pueden descargarlo y subir cambios |
-| [ ] | T08 | Crear el proyecto con React, TypeScript y Vite, con HTML generado por adelantado | Claude Code | T07 | Se construye sin errores y el HTML generado contiene los textos |
+| [x] | T08 | Crear el proyecto con React, TypeScript y Vite, con HTML generado por adelantado | Claude Code | T07 | Se construye sin errores y el HTML generado contiene los textos |
 | [ ] | T09 | Definir colores, tipografía incluida en la web y estilos base según las 13 reglas | Claude Code | T05, T08 | Coinciden con el spec y no se cargan fuentes externas |
 | [ ] | T10 | Barra superior y pie | Claude Code | T09 | Los enlaces llevan a su sección; en móvil se ve lo indicado |
 | [ ] | T11 | Portada | Claude Code | T06, T09 | Textos iguales al spec en escritorio y móvil |
