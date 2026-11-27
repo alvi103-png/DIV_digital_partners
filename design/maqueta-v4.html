@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DIV · Digital Partners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&display=swap">
+<style>
+/* 1. Colores: sin crema. Blanco, gris frío y bloques de color */
+:root {
+  --berenjena: #67204D;
+  --hondo: #3D102C;
+  --terracota: #F05A35;
+  --mango: #FFB000;
+  --blanco: #FFFFFF;
+  --niebla: #EEEDF2;
+  --carbon: #221C24;
+  --texto-2: #57505C;
+
+  --t-chico: 15px;
+  --t-texto: 16px;
+  --t-bloque: 22px;
+  --t-seccion: 40px;
+  --t-portada: clamp(44px, 9vw, 112px);
+}
+
+/* 2. Base */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body { margin: 0; background: var(--blanco); color: var(--carbon); font: 400 var(--t-texto)/1.6 "Instrument Sans", system-ui, sans-serif; }
+h1, h2, h3 { margin: 0; font-weight: 500; text-wrap: balance; }
+h1 { font-size: var(--t-portada); line-height: .98; letter-spacing: -0.045em; }
+h2 { font-size: var(--t-seccion); line-height: 1.08; letter-spacing: -0.025em; }
+h3 { font-size: var(--t-bloque); line-height: 1.2; letter-spacing: -0.01em; }
+p { margin: 0; text-wrap: pretty; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--mango); outline-offset: 3px; }
+.w { max-width: 1160px; margin: 0 auto; padding-inline: 20px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px;
+  border: 0; border-radius: 6px; cursor: pointer; text-decoration: none;
+  font: 500 var(--t-chico)/1 "Instrument Sans", system-ui, sans-serif;
+  transition: background-color .18s ease, color .18s ease;
+}
+
+/* 3. Barra: transparente sobre la portada, con fondo al desplazarse */
+.barra { position: fixed; inset: 0 0 auto; z-index: 20; color: var(--blanco); transition: background-color .18s ease; }
+.barra.fija { background: var(--hondo); }
+.barra .w { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+.marca { display: flex; align-items: baseline; gap: 10px; text-decoration: none; font-weight: 500; }
+.marca b { font-weight: 500; font-size: 30px; letter-spacing: -0.03em; }
+.marca span { font-size: var(--t-chico); }
+nav { display: flex; gap: 28px; font-size: var(--t-chico); }
+nav a { text-decoration: none; padding-block: 10px; }
+nav a:hover { text-decoration: underline; text-underline-offset: 6px; }
+
+/* 4. Portada centrada y foto ancha */
+.hero { background: linear-gradient(var(--hondo) 78%, var(--blanco) 78%); color: var(--blanco); padding-top: 160px; text-align: center; }
+.hero h1 span { display: block; color: var(--mango); }
+.hero p { max-width: 54ch; margin: 28px auto 0; }
+.hero .btn { margin-top: 28px; background: var(--terracota); color: var(--carbon); }
+.hero .btn:hover { background: var(--mango); }
+.foto { position: relative; margin: 64px 0 0; aspect-ratio: 21 / 9; border-radius: 12px; overflow: hidden; background: var(--niebla); color: var(--texto-2); display: grid; place-items: center; }
+.foto figcaption { padding: 24px; font-size: var(--t-chico); }
+.foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* 5. Secciones */
+.sec { padding-block: 120px; }
+.cab { display: grid; gap: 16px; margin-bottom: 56px; max-width: 620px; }
+
+/* 6. Servicios: mosaico de color de borde a borde */
+.cab-servicios { padding-top: 120px; }
+.mosaico { display: grid; grid-template-columns: 1fr 1fr; }
+.bloque { padding: 72px max(20px, calc(50vw - 560px)); display: grid; gap: 16px; align-content: start; font-size: var(--t-chico); }
+.bloque:nth-child(odd) { padding-right: 56px; }
+.bloque:nth-child(even) { padding-left: 56px; }
+.bloque p { max-width: 46ch; }
+.b-web { background: var(--niebla); }
+.b-auto { background: var(--mango); }
+.b-dia { background: var(--terracota); }
+.b-ia { background: var(--berenjena); color: var(--blanco); }
+.flujo { list-style: none; margin: 16px 0 0; padding: 0; max-width: 420px; }
+.flujo li { padding-block: 12px; border-top: 1px solid rgba(34, 28, 36, .4); font-weight: 500; }
+.chat { display: grid; gap: 8px; margin-top: 16px; max-width: 420px; }
+.chat p { max-width: 90%; padding: 10px 14px; border-radius: 10px; background: var(--blanco); color: var(--carbon); }
+.chat p + p { justify-self: end; background: var(--mango); }
+
+/* 7. Proceso: secuencia real, separada por líneas */
+.proceso { background: var(--blanco); }
+.proceso h2, .nosotras h2 { color: var(--berenjena); }
+.pasos { list-style: none; margin: 0; padding: 0; counter-reset: p; display: grid; grid-template-columns: repeat(4, 1fr); }
+.pasos li { counter-increment: p; display: grid; gap: 12px; align-content: start; padding: 24px 24px 0 0; border-top: 2px solid var(--berenjena); font-size: var(--t-chico); }
+.pasos h3::before { content: counter(p) ". "; color: var(--texto-2); }
+
+/* 8. Nosotras */
+.nosotras { background: var(--niebla); text-align: center; }
+.nosotras .w { display: grid; justify-items: center; gap: 24px; }
+.nosotras p { max-width: 52ch; }
+.duo { display: flex; }
+.duo span { width: 88px; height: 88px; border-radius: 50%; display: grid; place-items: center; font-size: var(--t-bloque); font-weight: 500; background: var(--berenjena); color: var(--blanco); border: 4px solid var(--niebla); }
+.duo span + span { margin-left: -16px; background: var(--terracota); color: var(--carbon); }
+
+/* 9. Contacto */
+.contacto { background: var(--hondo); color: var(--blanco); }
+.contacto .w { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.contacto .cab { align-content: start; margin: 0; }
+form { display: grid; gap: 20px; }
+label { display: grid; gap: 6px; font-size: var(--t-chico); }
+input:not([type="checkbox"]), textarea { width: 100%; padding: 12px 14px; border: 0; border-radius: 6px; background: var(--blanco); color: var(--carbon); font: 400 var(--t-texto)/1.5 "Instrument Sans", system-ui, sans-serif; }
+textarea { resize: vertical; }
+.acepto { grid-template-columns: auto 1fr; gap: 12px; align-items: start; }
+.acepto input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--mango); }
+form .btn { justify-self: start; background: var(--mango); color: var(--carbon); }
+form .btn:hover { background: var(--blanco); }
+output { font-size: var(--t-chico); color: var(--mango); min-height: 1.6em; }
+
+footer { background: var(--carbon); color: var(--blanco); padding-block: 32px; font-size: var(--t-chico); }
+footer .w { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+/* 10. Pantallas pequeñas */
+@media (max-width: 860px) {
+  .mosaico, .contacto .w { grid-template-columns: 1fr; }
+  .bloque, .bloque:nth-child(odd), .bloque:nth-child(even) { padding: 56px 20px; }
+  .pasos { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 640px) {
+  :root { --t-seccion: 32px; --t-bloque: 20px; }
+  .marca span, nav .secundario { display: none; }
+  .hero { padding-top: 120px; }
+  .foto { aspect-ratio: 4 / 3; margin-top: 48px; }
+  .sec { padding-block: 80px; }
+  .cab-servicios { padding-top: 80px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+/* 11. Iconos y efectos al pasar el cursor */
+.ico, .marca-agua { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+.ico { width: 40px; height: 40px; stroke-width: 1.5; }
+.btn .ico { width: 18px; height: 18px; margin-left: 8px; stroke-width: 2; transition: transform .2s ease; }
+.bloque { position: relative; overflow: hidden; isolation: isolate; }
+.bloque .ico { margin-bottom: 16px; transform-origin: 50% 80%; transition: transform .24s cubic-bezier(.22,1,.36,1); }
+.marca-agua { position: absolute; z-index: -1; right: -48px; bottom: -56px; width: 260px; height: 260px; stroke-width: .75; opacity: .12; transition: transform .5s cubic-bezier(.22,1,.36,1), opacity .3s ease; }
+.flujo li { display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: transform .22s ease, border-color .22s ease; }
+.flujo .ico { width: 18px; height: 18px; margin: 0; stroke-width: 2; opacity: .45; transition: transform .22s ease, opacity .22s ease; }
+.chat p { transition: transform .24s cubic-bezier(.22,1,.36,1); }
+.pasos li { position: relative; transition: background-color .2s ease, transform .2s ease; padding: 24px 20px 24px 16px; }
+.pasos li::after { content: ""; position: absolute; left: 0; right: 0; top: -2px; height: 6px; background: var(--terracota); transform: scaleX(0); transform-origin: left; transition: transform .3s cubic-bezier(.22,1,.36,1); }
+.pasos .ico { color: var(--berenjena); transition: transform .24s ease, color .24s ease; }
+.duo span { transition: transform .24s cubic-bezier(.22,1,.36,1); }
+@media (hover: hover) {
+  .btn:hover .ico { transform: translateX(4px); }
+  .bloque:hover > .ico { transform: translateY(-6px) rotate(-8deg) scale(1.12); }
+  .bloque:hover .marca-agua { transform: translate(-28px, -28px) rotate(-12deg) scale(1.12); opacity: .24; }
+  .bloque:hover .flujo li { transform: translateX(10px); border-color: var(--carbon); }
+  .bloque:hover .flujo .ico { opacity: 1; transform: translateX(4px); }
+  .bloque:hover .flujo li:nth-child(2), .bloque:hover .flujo li:nth-child(2) .ico { transition-delay: .09s; }
+  .bloque:hover .flujo li:nth-child(3), .bloque:hover .flujo li:nth-child(3) .ico { transition-delay: .18s; }
+  .bloque:hover .chat p { transform: translateY(-4px) rotate(-1deg); }
+  .bloque:hover .chat p + p { transform: translateY(-4px) rotate(1.5deg); transition-delay: .1s; }
+  .pasos li:hover { background: var(--niebla); transform: translateY(-6px); }
+  .pasos li:hover::after { transform: scaleX(1); }
+  .pasos li:hover .ico { color: var(--terracota); transform: scale(1.15) rotate(-6deg); }
+  .duo:hover span:first-child { transform: translateX(-10px) rotate(-8deg); }
+  .duo:hover span + span { transform: translateX(10px) rotate(8deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Iconos Lucide (licencia ISC), incluidos en la página -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-workflow" viewBox="0 0 24 24"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></symbol>
+  <symbol id="i-calendar-check" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></symbol>
+  <symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></symbol>
+  <symbol id="i-ear" viewBox="0 0 24 24"><path d="M6 8.5a6.5 6.5 0 1 1 13 0c0 6-6 6-6 10a3.5 3.5 0 1 1-7 0"/><path d="M15 8.5a2.5 2.5 0 0 0-5 0v1a2 2 0 1 1 0 4"/></symbol>
+  <symbol id="i-file-text" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M10 9H8M16 13H8M16 17H8"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+  <symbol id="i-trending-up" viewBox="0 0 24 24"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+</svg>
+
+<header class="barra" id="barra">
+  <div class="w">
+    <a class="marca" href="#inicio"><b>DIV</b><span>Digital Partners</span></a>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a class="secundario" href="#proceso">Proceso</a>
+      <a class="secundario" href="#nosotras">Nosotras</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="w">
+      <h1>Ideas diferentes. <span>Soluciones reales.</span></h1>
+      <p>Páginas web, automatizaciones e inteligencia artificial para negocios que quieren crecer sin complicarse.</p>
+      <a class="btn" href="#contacto">Cuéntanos tu proyecto<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      <!-- Guardar la foto como design/fotos/portada.jpg (horizontal) -->
+      <figure class="foto">
+        <figcaption>Aquí va una foto real y horizontal (fotos/portada.jpg)</figcaption>
+        <img src="fotos/portada.jpg" alt="" onerror="this.remove()">
+      </figure>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="w cab-servicios">
+      <div class="cab">
+        <h2>Todo lo digital de tu negocio, en un solo lugar</h2>
+        <p>Elige un servicio o combínalos. Todos están pensados para funcionar juntos.</p>
+      </div>
+    </div>
+    <div class="mosaico">
+      <article class="bloque b-web">
+        <svg class="marca-agua" aria-hidden="true"><use href="#i-monitor"/></svg>
+        <svg class="ico" aria-hidden="true"><use href="#i-monitor"/></svg>
+        <h3>Páginas web</h3>
+        <p>Páginas de presentación, tiendas en línea y webs de empresa, rápidas y fáciles de actualizar.</p>
+      </article>
+      <article class="bloque b-auto">
+        <svg class="marca-agua" aria-hidden="true"><use href="#i-workflow"/></svg>
+        <svg class="ico" aria-hidden="true"><use href="#i-workflow"/></svg>
+        <h3>Automatizaciones</h3>
+        <p>Menos tareas repetidas. Por ejemplo, cada cliente nuevo recibe respuesta al instante.</p>
+        <ol class="flujo">
+          <li>Te llega un formulario<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></li>
+          <li>Se guarda en tu lista de clientes<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></li>
+          <li>Sale la respuesta por WhatsApp<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg></li>
+        </ol>
+      </article>
+      <article class="bloque b-dia">
+        <svg class="marca-agua" aria-hidden="true"><use href="#i-calendar-check"/></svg>
+        <svg class="ico" aria-hidden="true"><use href="#i-calendar-check"/></svg>
+        <h3>Soluciones para el día a día</h3>
+        <p>Soluciones digitales a medida para simplificar la gestión de tu negocio.</p>
+      </article>
+      <article class="bloque b-ia">
+        <svg class="marca-agua" aria-hidden="true"><use href="#i-bot"/></svg>
+        <svg class="ico" aria-hidden="true"><use href="#i-bot"/></svg>
+        <h3>Inteligencia artificial</h3>
+        <p>Un asistente que atiende por ti.</p>
+        <div class="chat">
+          <p>¿Tienen disponibilidad para el sábado?</p>
+          <p>¡Hola! Sí, tenemos citas a las 10:00 y a las 15:00. ¿Cuál te reservo?</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec proceso" id="proceso">
+    <div class="w">
+      <div class="cab">
+        <h2>Cuatro pasos, sin sorpresas</h2>
+        <p>Siempre sabes en qué vamos y qué sigue.</p>
+      </div>
+      <ol class="pasos">
+        <li><svg class="ico" aria-hidden="true"><use href="#i-ear"/></svg><h3>Escuchamos</h3><p>Una llamada para entender tu negocio y tus metas.</p></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-file-text"/></svg><h3>Proponemos</h3><p>Solución, tiempos y precio claros desde el inicio.</p></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-wrench"/></svg><h3>Construimos</h3><p>Avances semanales que puedes ver y comentar.</p></li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-trending-up"/></svg><h3>Crecemos</h3><p>Medimos, ajustamos y seguimos a tu lado.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec nosotras" id="nosotras">
+    <div class="w">
+      <div class="duo" aria-hidden="true"><span>V</span><span>D</span></div>
+      <h2>Viviana y Damaris</h2>
+      <p>Dos socias que unen diseño, tecnología y estrategia. Hablamos claro y construimos soluciones que de verdad usas.</p>
+    </div>
+  </section>
+
+  <section class="sec contacto" id="contacto">
+    <div class="w">
+      <div class="cab">
+        <h2>¿Hablamos de tu proyecto?</h2>
+        <p>Cuéntanos qué necesitas y te escribimos en menos de 24 horas hábiles.</p>
+      </div>
+      <form id="form-contacto">
+        <label>Nombre<input name="nombre" required pattern=".*\S.*" autocomplete="name"></label>
+        <label>Email<input name="email" type="email" required autocomplete="email"></label>
+        <label>Mensaje breve<textarea name="mensaje" rows="4" required></textarea></label>
+        <label class="acepto"><input type="checkbox" required><span>Acepto el aviso de privacidad (pendiente de redactar)</span></label>
+        <button class="btn" type="submit">Quiero que me contacten</button>
+        <output></output>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="w"><span>© 2026 DIV · Digital Partners</span><span>Aviso de privacidad (pendiente)</span></div>
+</footer>
+
+<script>
+  // Fondo de la barra al desplazarse
+  const barra = document.getElementById('barra');
+  const alDesplazar = () => barra.classList.toggle('fija', scrollY > 8);
+  addEventListener('scroll', alDesplazar, { passive: true });
+  alDesplazar();
+
+  // Formulario de demostración: no se envía nada
+  document.getElementById('form-contacto').addEventListener('submit', (e) => {
+    e.preventDefault();
+    e.target.querySelector('output').textContent = 'Maqueta: el envío todavía no está conectado.';
+  });
+</script>
+</body>
+</html>
